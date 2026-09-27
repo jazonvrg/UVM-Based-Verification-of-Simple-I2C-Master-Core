@@ -4,15 +4,15 @@ class host_monitor extends uvm_monitor;
 	virtual host_if host_vif;
 	host_transaction trans;
 	uvm_analysis_port #(host_transaction) host_busy_observed_port;
-	uvm_analysis_port #(host_transaction) host_free_observed_port;
+	uvm_analysis_port #(host_transaction) host_done_observed_port;
 
 	function new(string name = "host_monitor", uvm_component parent);
 		super.new(name, parent);
 		host_busy_observed_port = new("host_busy_observed_port", this);
-		host_free_observed_port = new("host_free_observed_port", this);
+		host_done_observed_port = new("host_done_observed_port", this);
 	endfunction: new
 
-	virtual function build_phase(uvm_phase phase);
+	virtual function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
 		`uvm_info("build_phase", "Entered...", UVM_LOW)
 
@@ -24,7 +24,7 @@ class host_monitor extends uvm_monitor;
 		`uvm_info("build_phase", "Exiting...", UVM_LOW)
 	endfunction: build_phase
 
-	virtual task run_pphase(uvm_phase phase);
+	virtual task run_phase(uvm_phase phase);
 		`uvm_info("run_phase", "Entered...", UVM_LOW)
 
 		/* Setup */
@@ -40,7 +40,7 @@ class host_monitor extends uvm_monitor;
 				if (host_vif.done === 1'b0) begin
 					host_busy_observed_port.write(trans);	
 				end else if (host_vif.done === 1'b1) begin
-					host_free_observed_port.write(trans);
+					host_done_observed_port.write(trans);
 				end
 			end while (!(host_vif.done === 1'b1));
 		end

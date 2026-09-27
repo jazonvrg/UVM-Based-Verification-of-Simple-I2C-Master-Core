@@ -1,2 +1,2 @@
-../rtl/clk_div.v
-../rtl/i2c_master.v
+../rtl/clk_div.sv
+../rtl/i2c_master.sv

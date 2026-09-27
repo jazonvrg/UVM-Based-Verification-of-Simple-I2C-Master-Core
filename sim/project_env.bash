@@ -6,10 +6,10 @@ setup_dva
 export UVM_HOME=/ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2
 
 ## Verify root path
-export UART_IP_VERIF_PATH=./..
+export I2C_IP_VERIF_PATH=./..
 
-## AHB VIP Design root path
-export AHB_VIP_ROOT=$UART_IP_VERIF_PATH/vip/ahb_vip
+## I2C VIP Design root path
+export I2C_VIP_ROOT=$I2C_IP_VERIF_PATH/vip/i2c_vip
 
-## UART VIP Design root path
-export UART_VIP_ROOT=$UART_IP_VERIF_PATH/vip/uart_vip
+## HOST VIP Design root path
+export HOST_VIP_ROOT=$I2C_IP_VERIF_PATH/vip/host_vip

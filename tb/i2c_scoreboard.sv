@@ -1,13 +1,20 @@
 `uvm_analysis_imp_decl(_i2c_drv)
 `uvm_analysis_imp_decl(_i2c_mnt)
+`uvm_analysis_imp_decl(_host_done)
+`uvm_analysis_imp_decl(_host_busy)
 
 class i2c_scoreboard extends uvm_scoreboard;
 	`uvm_component_utils(i2c_scoreboard)
 
 	uvm_analysis_imp_i2c_drv #(i2c_transaction, i2c_scoreboard) i2c_drv_export;
-	uvm_analysis_imp_i2c_mnt #(i2c_transaction ,i2c_scoreboard) i2c_mnt_export;
+	uvm_analysis_imp_i2c_mnt #(i2c_transaction, i2c_scoreboard) i2c_mnt_export;
+	uvm_analysis_imp_host_done #(host_transaction, i2c_scoreboard) host_done_export;
+	uvm_analysis_imp_host_busy #(host_transaction, i2c_scoreboard) host_busy_export;
 
-	function new(string name = "i2c_scoerboard", uvm_component parent);
+	logic exp_busy, exp_done;
+	i2c_transaction i2c_drv_q[$], exp;
+
+	function new(string name = "i2c_scoreboard", uvm_component parent);
 		super.new(name, parent);
 	endfunction: new
 
@@ -24,11 +31,12 @@ class i2c_scoreboard extends uvm_scoreboard;
 
 	function void write_i2c_drv(i2c_transaction trans);
 		`uvm_info("write_i2c_drv", $sformatf("Add I2C's driver transaction into queue"), UVM_LOW)
-		i2c_drv_q.push_pack(trans);
+		i2c_drv_q.push_back(trans);
 	endfunction
 
-	function void write_i2c_mnt(i2c_tranasction act);
+	function void write_i2c_mnt(i2c_transaction act);
 		`uvm_info("write_i2c_mnt", $sformatf("I2C TRANSACTION COMPARATIVE"), UVM_LOW)
+		exp = i2c_transaction::type_id::create("exp", this);
 		if (i2c_drv_q.size() > 0) begin
 			exp = i2c_drv_q.pop_front();
 			$display("============================================================================================================================");
@@ -36,13 +44,41 @@ class i2c_scoreboard extends uvm_scoreboard;
 				`uvm_info(get_type_name(), $sformatf("PASSED! Signal is matching| Exp: addr = %0h, data = %0h| Act: addr = %0h, data = %0h", exp.addr, exp.data, act.addr, act.data), UVM_LOW)
 			end else if (exp.addr === act.addr && exp.data !== act.data) begin
 				`uvm_error(get_type_name(), $sformatf("FAILED! Data is not matching| Exp: addr = %0h, data = %0h| Act: addr = %0h, data = %0h", exp.addr, exp.data, act.addr, act.data))
-			end else begin if (exp.addr !== act.addr && exp.data === act.data) begin
+			end else if (exp.addr !== act.addr && exp.data === act.data) begin
 				`uvm_error(get_type_name(), $sformatf("FAILED! Address is not matching| Exp: addr = %0h, data = %0h| Act: add = %0h, data = %0h", exp.addr, exp.data, act.addr, act.data))
 			end else begin
 				`uvm_error(get_type_name(), $sformatf("FAILED! Signal is not matching| Exp: addr = %0h, data = %0h| Act: addr = %0h, data = %0h", exp.addr, exp.data, act.addr, act.data))
 			end
 			$display("============================================================================================================================");
 		end
+	endfunction
+
+	function void write_host_busy(host_transaction act);
+		`uvm_info("write_host_busy", $sformatf("HOST'S BUSY COMPARATIVE"), UVM_LOW)
+		exp_busy = 1'b1;
+		exp_done = 1'b0;
+		host_compared(exp_busy, exp_done, act);
+	endfunction
+
+	function void write_host_done(host_transaction act);
+		`uvm_info("write_host_busy", $sformatf("HOST'S DONE COMPARATIVE"), UVM_LOW)
+		exp_busy = 1'b0;
+		exp_done = 1'b1;
+		host_compared(exp_busy, exp_done, act);
+	endfunction
+
+	function void host_compared(logic exp_busy, logic exp_done, host_transaction act);
+		$display("============================================================================================================================");	
+		if (exp_busy === act.busy && exp_done === act.done) begin
+			`uvm_info(get_type_name(), $sformatf("PASSED! Signal is matching| Exp: busy = %0b, done = %0b| Act: busy = %0b, done = %0b", exp_busy, exp_done, act.busy, act.done), UVM_LOW)
+		end else if (exp_busy === act.busy && exp_done !== act.done) begin
+			`uvm_error(get_type_name(), $sformatf("FAILED! Done signal is not matching| Exp: busy = %0b, done = %0b| Act: busy = %0b, done = %0b", exp_busy, exp_done, act.busy, act.done))
+		end else if (exp_busy !== act.busy && exp_done === act.done) begin
+			`uvm_error(get_type_name(), $sformatf("FAILED! Busy signal is not matching| Exp: busy = %0b, done = %0b| Act: busy = %0b, done = %0b", exp_busy, exp_done, act.busy, act.done))
+		end else begin
+			`uvm_error(get_type_name(), $sforrmatf("FAILED! Signal is not matching| Exp: busy = %0b, done = %0b,| Act: busy = %0b, done = %0b", exp_busy, exp_done, act.busy, act.done))
+		end
+		$display("============================================================================================================================");	
 	endfunction
 
 endclass: i2c_scoreboard

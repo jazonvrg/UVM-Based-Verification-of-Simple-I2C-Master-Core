@@ -2,8 +2,9 @@ class i2c_monitor extends uvm_monitor;
 	`uvm_component_utils(i2c_monitor)
 
 	virtual i2c_if i2c_vif;
-	uvm_analasys_port #(i2c_transaction) i2c_observed_port;
+	uvm_analysis_port #(i2c_transaction) i2c_observed_port;
 	i2c_transaction trans;
+	logic mem_rw;
 
 	function new(string name = "i2c_monitor", uvm_component parent);
 		super.new(name, parent);
@@ -30,7 +31,7 @@ class i2c_monitor extends uvm_monitor;
 		forever begin
 			do begin
 				@(posedge i2c_vif.clk);
-			end while (!(i2c_vif.scl === 1'b1 && i2c_vif.sda === 1'b0);
+			end while (!(i2c_vif.scl === 1'b1 && i2c_vif.sda === 1'b0));
 			for(int i = 6; i >= 0; i = i - 1) begin
 				@(posedge i2c_vif.scl);
 				trans.addr[i] = i2c_vif.sda;
