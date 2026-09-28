@@ -1,5 +1,7 @@
 class i2c_phase_test extends i2c_base_test;
 	`uvm_component_utils(i2c_phase_test)
+
+	i2c_sequence seq;
 	
 	function new(string name = "i2c_phase_test", uvm_component parent);
 		super.new(name, parent);
@@ -17,7 +19,7 @@ class i2c_phase_test extends i2c_base_test;
 
 		phase.raise_objection(this);
 		reset();
-		seq = uart_sequence::type_id::create("seq");
+		seq = i2c_sequence::type_id::create("seq");
 		$display("============================================================================================================================");
 		$display("=================================================  ### RX UART | 13x  ###  =================================================");
 		$display("============================================================================================================================");

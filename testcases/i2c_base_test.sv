@@ -64,10 +64,10 @@ class i2c_base_test extends uvm_test;
 	endtask: reset
 
 	virtual function void final_phase(uvm_phase phase);
+		uvm_report_server svr;
 		super.final_phase(phase);
 		`uvm_info("final_phase", "Entered...", UVM_LOW)
 
-		uvm_report_server svr;
 		svr = uvm_report_server::get_server();
 		if (svr.get_severity_count(UVM_FATAL) + svr.get_severity_count(UVM_ERROR) > 0) begin
 			$display("\n=====================================================");
