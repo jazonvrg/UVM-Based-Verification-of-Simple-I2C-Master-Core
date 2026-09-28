@@ -1,6 +1,14 @@
 class i2c_base_test extends uvm_test;
 	`uvm_component_utils(i2c_base_test)
 
+	virtual i2c_if i2c_vif;
+	virtual host_if host_vif;
+	i2c_environment env;
+	i2c_error_catcher i2c_err_catcher;
+	host_error_catcher host_err_catcher;
+
+	time usr_timeout = 50s;
+
 	function new(string name = "i2c_base_test", uvm_component parent);
 		super.new(name, parent);
 	endfunction: new
