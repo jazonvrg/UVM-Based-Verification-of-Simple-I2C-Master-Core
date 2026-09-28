@@ -47,7 +47,7 @@ class host_monitor extends uvm_monitor;
 			host_done_observed_port.write(trans);
 			
 			/* Idle */
-			@(posedge host_vif.clk iff (host_vif.busy === 1'b0 && host_vif.done === 1'b0);
+			@(posedge host_vif.clk iff (host_vif.busy === 1'b0 && host_vif.done === 1'b0));
 			trans.busy = host_vif.busy;
 			trans.done = host_vif.done;
 			host_idle_observed_port.write(trans);

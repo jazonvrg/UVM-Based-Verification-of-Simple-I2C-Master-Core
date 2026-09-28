@@ -28,7 +28,7 @@ class i2c_monitor extends uvm_monitor;
 		
 		trans = i2c_transaction::type_id::create("trans", this);
 		forever begin
-			@(negedge i2c_vif.sda iff i2c_vif.scl === 1'b1));
+			@(negedge i2c_vif.sda iff i2c_vif.scl === 1'b1);
 			for(int i = 6; i >= 0; i = i - 1) begin
 				@(posedge i2c_vif.scl);
 				trans.addr[i] = i2c_vif.sda;

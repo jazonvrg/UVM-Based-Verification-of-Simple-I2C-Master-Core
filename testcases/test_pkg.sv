@@ -8,7 +8,7 @@ package test_pkg;
   	import seq_pkg::*;
   	import i2c_pkg::*;
 
-	`include "uart_base_test.sv"
+	`include "i2c_base_test.sv"
 
 	`include "i2c_phase_test.sv"	
 
