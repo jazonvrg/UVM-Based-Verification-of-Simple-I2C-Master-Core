@@ -1,4 +1,4 @@
-class i2c_sequence extends uvm_sequence #(i2c_transaction);
+class i2c_sequence extends uvm_sequence #(host_transaction);
 	`uvm_object_utils(i2c_sequence)
 
 	function new(string name = "i2c_sequence");
@@ -8,7 +8,7 @@ class i2c_sequence extends uvm_sequence #(i2c_transaction);
 	virtual task body();
 		`uvm_info("body", "Entered...", UVM_LOW)
 
-		req = i2c_transaction::type_id::create("req");
+		req = host_transaction::type_id::create("req");
 		start_item(req);
 		if (req.randomize()) begin
 			`uvm_info("body", $sformatf("Transaction randomize is: \n%0s", req.sprint()), UVM_LOW)

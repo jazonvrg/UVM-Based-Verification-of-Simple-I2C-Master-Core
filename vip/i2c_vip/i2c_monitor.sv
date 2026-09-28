@@ -27,11 +27,8 @@ class i2c_monitor extends uvm_monitor;
 		`uvm_info("run_phase", "Entered...", UVM_LOW)
 		
 		trans = i2c_transaction::type_id::create("trans", this);
-		wait (i2c_vif.rst_n === 1'b1);
 		forever begin
-			do begin
-				@(posedge i2c_vif.clk);
-			end while (!(i2c_vif.scl === 1'b1 && i2c_vif.sda === 1'b0));
+			@(negedge i2c_vif.sda iff i2c_vif.scl === 1'b1));
 			for(int i = 6; i >= 0; i = i - 1) begin
 				@(posedge i2c_vif.scl);
 				trans.addr[i] = i2c_vif.sda;

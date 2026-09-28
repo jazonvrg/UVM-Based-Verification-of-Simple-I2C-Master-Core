@@ -61,9 +61,16 @@ class i2c_scoreboard extends uvm_scoreboard;
 	endfunction
 
 	function void write_host_done(host_transaction act);
-		`uvm_info("write_host_busy", $sformatf("HOST'S DONE COMPARATIVE"), UVM_LOW)
+		`uvm_info("write_host_done", $sformatf("HOST'S DONE COMPARATIVE"), UVM_LOW)
 		exp_busy = 1'b0;
 		exp_done = 1'b1;
+		host_compared(exp_busy, exp_done, act);
+	endfunction
+
+	function void write_host_idle(host_transaction act);
+		`uvm_info("write_host_idle", $sformatf("HOST'S IDLE COMPARATIVE"), UVM_LOW)
+		exp_busy = 1'b0;
+		exp_done = 1'b0;
 		host_compared(exp_busy, exp_done, act);
 	endfunction
 

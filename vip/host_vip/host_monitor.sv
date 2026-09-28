@@ -3,11 +3,13 @@ class host_monitor extends uvm_monitor;
 	
 	virtual host_if host_vif;
 	host_transaction trans;
+	uvm_analysis_port #(host_transaction) host_idle_observed_port;
 	uvm_analysis_port #(host_transaction) host_busy_observed_port;
 	uvm_analysis_port #(host_transaction) host_done_observed_port;
 
 	function new(string name = "host_monitor", uvm_component parent);
 		super.new(name, parent);
+		host_idle_observed_port = new("host_idle_observed_port", this);
 		host_busy_observed_port = new("host_busy_observed_port", this);
 		host_done_observed_port = new("host_done_observed_port", this);
 	endfunction: new
@@ -32,17 +34,23 @@ class host_monitor extends uvm_monitor;
 
 		wait (host_vif.rst_n === 1'b1);
 		forever begin
-			/* In Process */
-			do begin
-				@(posedge host_vif.clk);
-				trans.busy = host_vif.busy;
-				trans.done = host_vif.done;
-				if (host_vif.done === 1'b0) begin
-					host_busy_observed_port.write(trans);	
-				end else if (host_vif.done === 1'b1) begin
-					host_done_observed_port.write(trans);
-				end
-			end while (!(host_vif.done === 1'b1));
+			/* Start */
+			@(posedge host_vif.clk iff host_vif.start === 1'b1);
+			trans.busy = host_vif.busy;
+			trans.done = host_vif.done;
+			host_busy_observed_port.write(trans);
+
+			/* Done */
+			@(posedge host_vif.clk iff host_vif.done === 1'b1);
+			trans.busy = host_vif.busy;
+			trans.done = host_vif.done;
+			host_done_observed_port.write(trans);
+			
+			/* Idle */
+			@(posedge host_vif.clk iff (host_vif.busy === 1'b0 && host_vif.done === 1'b0);
+			trans.busy = host_vif.busy;
+			trans.done = host_vif.done;
+			host_idle_observed_port.write(trans);
 		end
 
 		`uvm_info("run_phase", "Exiting...", UVM_LOW)

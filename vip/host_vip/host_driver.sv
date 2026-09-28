@@ -46,9 +46,9 @@ class host_driver extends uvm_driver #(host_transaction);
 		@(posedge host_vif.clk);
 		host_vif.addr <= req.addr;
 		host_vif.data_in <= req.data;
-		host_vif.done <= 1'b1;
+		host_vif.start <= 1'b1;
 		@(posedge host_vif.clk);
-		host_vif.done <= 1'b0;
+		host_vif.start <= 1'b0;
 		`uvm_info(get_type_name(), $sformatf("Loading transaction with addr = %0h, data = %0h", req.addr, req.data), UVM_LOW)
 		@(posedge host_vif.clk iff host_vif.done === 1'b1);
 	endtask: drive
