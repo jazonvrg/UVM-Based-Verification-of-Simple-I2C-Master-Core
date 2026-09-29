@@ -40,10 +40,11 @@ class i2c_environment extends uvm_env;
 		`uvm_info("connect_phase", "Entered...", "UVM_LOW")
 
 		/* Comparative of transaction */
-		host_agt.drv.i2c_observed_port.connect(scb.i2c_drv_export);
-		i2c_agt.mnt.i2c_observed_port.connect(scb.i2c_mnt_export);	
+		host_agt.drv.host_observed_port.connect(scb.host_exp_export);
+		i2c_agt.mnt.i2c_observed_port.connect(scb.i2c_act_export);	
 		
 		/* Comparative of busy & done signal */
+		host_agt.mnt.host_idle_observed_port.connect(scb.host_idle_export);
 		host_agt.mnt.host_busy_observed_port.connect(scb.host_busy_export);
 		host_agt.mnt.host_done_observed_port.connect(scb.host_done_export);
 

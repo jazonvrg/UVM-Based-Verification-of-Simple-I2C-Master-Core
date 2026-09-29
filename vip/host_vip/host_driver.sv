@@ -2,11 +2,11 @@ class host_driver extends uvm_driver #(host_transaction);
 	`uvm_component_utils(host_driver)
 
 	virtual host_if host_vif;
-	uvm_analysis_port #(host_transaction) i2c_observed_port;
+	uvm_analysis_port #(host_transaction) host_observed_port;
 
 	function new(string name = "host_driver", uvm_component parent);
 		super.new(name, parent);
-		i2c_observed_port = new("i2c_observed_port", this);
+		host_observed_port = new("host_observed_port", this);
 	endfunction: new
 
 	virtual function void build_phase(uvm_phase phase);
@@ -26,7 +26,7 @@ class host_driver extends uvm_driver #(host_transaction);
 
 		/* Setup */
 		host_vif.addr <= 7'h0;
-		host_vif.data <= 8'h0;
+		host_vif.data_in <= 8'h0;
 		host_vif.clk_div_tick <= 1'b0;
 		host_vif.start <= 1'b0;
 
@@ -34,9 +34,9 @@ class host_driver extends uvm_driver #(host_transaction);
 		wait (host_vif.rst_n === 1'b1);
 		forever begin
 			seq_item_port.get_next_item(req);	
-			i2c_observed_port.write(req);	
+			host_observed_port.write(req);
 			drive();
-			seq_item_port.get_finish(req);		
+			seq_item_port.item_done(req);		
 		end
 
 		`uvm_info("run_phase", "Exiting...", UVM_LOW)

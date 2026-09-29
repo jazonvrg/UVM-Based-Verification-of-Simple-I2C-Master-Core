@@ -38,6 +38,12 @@ class host_monitor extends uvm_monitor;
 			@(posedge host_vif.clk iff host_vif.start === 1'b1);
 			trans.busy = host_vif.busy;
 			trans.done = host_vif.done;
+			host_idle_observed_port.write(trans);
+			
+			/* Busy */
+			@(posedge host_vif.clk);
+			trans.busy = host_vif.busy;
+			trans.done = host_vif.done;
 			host_busy_observed_port.write(trans);
 
 			/* Done */

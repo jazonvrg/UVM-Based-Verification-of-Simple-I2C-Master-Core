@@ -1,0 +1,235 @@
+# vsim -sv_seed 1 -coverage -coveranalysis -voptargs="+acc" -assertdebug -c testbench -do "coverage save -codeAll -cvg -onexit i2c_phase_test_1.ucdb; log -r /*;run -all;" -l i2c_phase_test_1.log "+UVM_TESTNAME=i2c_phase_test" "+UVM_VERBOSITY=UVM_HIGH" 
+# Start time: 22:52:33 on Sep 29,2026
+# Loading /tmp/vannghia_1108@ictc-eda-ldap.ipa.test_dpi_38683/linux_x86_64_gcc-11/export_tramp.so
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 10.6d_1 linux_x86_64 Apr 11 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.i2c_if(fast)
+# Loading work.host_if(fast)
+# Loading work.uvm_pkg(fast)
+# Loading work.host_pkg(fast)
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# different random seeds from your non-debug simulations.
+# Loading work.i2c_pkg(fast)
+# Loading work.seq_pkg(fast)
+# Loading work.env_pkg(fast)
+# Loading work.test_pkg(fast)
+# Loading work.testbench(fast)
+# Loading work.i2c_if(fast)
+# Loading work.host_if(fast)
+# Loading work.i2c_master(fast)
+# Loading work.clk_div(fast)
+# Compiling /tmp/vannghia_1108@ictc-eda-ldap.ipa.test_dpi_38683/linux_x86_64_gcc-5.3.0/exportwrapper.c
+# Compiling /tmp/vannghia_1108@ictc-eda-ldap.ipa.test_dpi_38683/linux_x86_64_gcc-11/exportwrapper.c
+# Loading /tmp/vannghia_1108@ictc-eda-ldap.ipa.test_dpi_38683/linux_x86_64_gcc-11/vsim_auto_compile.so
+# coverage save -codeAll -cvg -onexit i2c_phase_test_1.ucdb
+#  log -r /*
+# run -all
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test i2c_phase_test...
+# UVM_INFO ./../testcases/i2c_base_test.sv(18) @ 0: uvm_test_top [build_phase] Entered...
+# UVM_INFO ./../testcases/i2c_base_test.sv(38) @ 0: uvm_test_top [build_phase] Exiting...
+# UVM_INFO ./../testcases/i2c_phase_test.sv(12) @ 0: uvm_test_top [build_phase] Entered...
+# UVM_INFO ./../testcases/i2c_phase_test.sv(14) @ 0: uvm_test_top [build_phase] Exiting...
+# UVM_INFO ./../vip/host_vip/host_agent.sv(15) @ 0: uvm_test_top.env.host_agt [build_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_agent.sv(40) @ 0: uvm_test_top.env.host_agt [build_phase] Exiting...
+# UVM_INFO ./../vip/host_vip/host_driver.sv(14) @ 0: uvm_test_top.env.host_agt.drv [build_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_driver.sv(21) @ 0: uvm_test_top.env.host_agt.drv [build_phase] Exiting...
+# UVM_INFO ./../vip/host_vip/host_monitor.sv(19) @ 0: uvm_test_top.env.host_agt.mnt [build_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_monitor.sv(26) @ 0: uvm_test_top.env.host_agt.mnt [build_phase] Exiting...
+# UVM_INFO ./../vip/i2c_vip/i2c_agent.sv(13) @ 0: uvm_test_top.env.i2c_agt [build_phase] Entered...
+# UVM_INFO ./../vip/i2c_vip/i2c_agent.sv(24) @ 0: uvm_test_top.env.i2c_agt [build_phase] Exiting...
+# UVM_INFO ./../vip/i2c_vip/i2c_monitor.sv(16) @ 0: uvm_test_top.env.i2c_agt.mnt [build_phase] Entered...
+# UVM_INFO ./../vip/i2c_vip/i2c_monitor.sv(23) @ 0: uvm_test_top.env.i2c_agt.mnt [build_phase] Exiting...
+# UVM_INFO ./../tb/i2c_scoreboard.sv(25) @ 0: uvm_test_top.env.scb [build_phase] Entered...
+# UVM_INFO ./../tb/i2c_scoreboard.sv(34) @ 0: uvm_test_top.env.scb [build_phase] Exiting...
+# UVM_INFO ./../vip/host_vip/host_agent.sv(45) @ 0: uvm_test_top.env.host_agt [connect_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_agent.sv(51) @ 0: uvm_test_top.env.host_agt [connect_phase] Exiting...
+# UVM_INFO ./../testcases/i2c_base_test.sv(43) @ 0: uvm_test_top [connect_phase] Entered...
+# UVM_INFO ./../testcases/i2c_base_test.sv(45) @ 0: uvm_test_top [connect_phase] Exiting...
+# UVM_INFO ./../testcases/i2c_base_test.sv(50) @ 0: uvm_test_top [end_of_elaboration_phase] Entered...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(579) @ 0: reporter [UVMTOP] UVM testbench topology:
+# ------------------------------------------------------------------------
+# Name                             Type                        Size  Value
+# ------------------------------------------------------------------------
+# uvm_test_top                     i2c_phase_test              -     @346 
+#   env                            i2c_environment             -     @363 
+#     host_agt                     host_agent                  -     @395 
+#       drv                        host_driver                 -     @558 
+#         host_observed_port       uvm_analysis_port           -     @587 
+#         rsp_port                 uvm_analysis_port           -     @577 
+#         seq_item_port            uvm_seq_item_pull_port      -     @567 
+#       mnt                        host_monitor                -     @597 
+#         host_busy_observed_port  uvm_analysis_port           -     @616 
+#         host_done_observed_port  uvm_analysis_port           -     @626 
+#         host_idle_observed_port  uvm_analysis_port           -     @606 
+#       seq                        host_sequencer              -     @421 
+#         rsp_export               uvm_analysis_export         -     @430 
+#         seq_item_export          uvm_seq_item_pull_imp       -     @548 
+#         arbitration_queue        array                       0     -    
+#         lock_queue               array                       0     -    
+#         num_last_reqs            integral                    32    'd1  
+#         num_last_rsps            integral                    32    'd1  
+#     i2c_agt                      i2c_agent                   -     @386 
+#       mnt                        i2c_monitor                 -     @660 
+#         i2c_observed_port        uvm_analysis_port           -     @669 
+#     scb                          i2c_scoreboard              -     @404 
+#       host_busy_export           uvm_analysis_imp_host_busy  -     @730 
+#       host_done_export           uvm_analysis_imp_host_done  -     @720 
+#       host_exp_export            uvm_analysis_imp_host_exp   -     @700 
+#       host_idle_export           uvm_analysis_imp_host_idle  -     @710 
+#       i2c_act_export             uvm_analysis_imp_i2c_act    -     @690 
+# ------------------------------------------------------------------------
+# 
+# UVM_INFO ./../testcases/i2c_base_test.sv(54) @ 0: uvm_test_top [end_of_elaboration_phase] Exiting...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ./../testcases/i2c_phase_test.sv(18) @ 0: uvm_test_top [run_phase] Entered...
+# UVM_INFO ./../vip/i2c_vip/i2c_monitor.sv(27) @ 0: uvm_test_top.env.i2c_agt.mnt [run_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_monitor.sv(30) @ 0: uvm_test_top.env.host_agt.mnt [run_phase] Entered...
+# UVM_INFO ./../vip/host_vip/host_driver.sv(25) @ 0: uvm_test_top.env.host_agt.drv [run_phase] Entered...
+# ============================================================================================================================
+# =================================================  ### RX UART | 13x  ###  =================================================
+# ============================================================================================================================
+# UVM_INFO ./../sequences/i2c_sequence.sv(9) @ 0: uvm_test_top.env.host_agt.seq@@seq [body] Entered...
+# UVM_INFO ./../sequences/i2c_sequence.sv(14) @ 0: uvm_test_top.env.host_agt.seq@@seq [body] Transaction randomize is: 
+# ----------------------------------------------------------------------------------------
+# Name                           Type              Size  Value                            
+# ----------------------------------------------------------------------------------------
+# req                            host_transaction  -     @821                             
+#   addr                         integral          7     'h5                              
+#   data                         integral          8     'h9e                             
+#   busy                         integral          1     'b0                              
+#   done                         integral          1     'b0                              
+#   begin_time                   time              64    0                                
+#   depth                        int               32    'd2                              
+#   parent sequence (name)       string            3     seq                              
+#   parent sequence (full name)  string            33    uvm_test_top.env.host_agt.seq.seq
+#   sequencer                    string            29    uvm_test_top.env.host_agt.seq    
+# ----------------------------------------------------------------------------------------
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(38) @ 0: uvm_test_top.env.scb [write_i2c_drv] Add I2C's driver transaction into queue
+# UVM_INFO ./../vip/host_vip/host_driver.sv(52) @ 0: uvm_test_top.env.host_agt.drv [host_driver] Loading transaction with addr = 5, data = 9e
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(83) @ 0: uvm_test_top.env.scb [write_host_idle] HOST'S IDLE COMPARATIVE
+# ============================================================================================================================
+# UVM_INFO ./../tb/i2c_scoreboard.sv(93) @ 0: uvm_test_top.env.scb [i2c_scoreboard] PASSED! Signal is matching| Exp: busy = 0, done = 0| Act: busy = 0, done = 0
+# ============================================================================================================================
+# 
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(65) @ 0: uvm_test_top.env.scb [write_host_busy] HOST'S BUSY COMPARATIVE
+# ============================================================================================================================
+# UVM_INFO ./../tb/i2c_scoreboard.sv(93) @ 0: uvm_test_top.env.scb [i2c_scoreboard] PASSED! Signal is matching| Exp: busy = 1, done = 0| Act: busy = 1, done = 0
+# ============================================================================================================================
+# 
+# UVM_INFO ./../vip/i2c_vip/i2c_monitor.sv(42) @ 3000000: uvm_test_top.env.i2c_agt.mnt [i2c_monitor] Capturing addr = 5, data = 9e
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(44) @ 3000000: uvm_test_top.env.scb [write_i2c_mnt] I2C TRANSACTION COMPARATIVE
+# ============================================================================================================================
+# UVM_INFO ./../tb/i2c_scoreboard.sv(50) @ 3000000: uvm_test_top.env.scb [i2c_scoreboard] PASSED! Signal is matching| Exp: addr = 5, data = 9e| Act: addr = 5, data = 9e
+# ============================================================================================================================
+# 
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(74) @ 3000000: uvm_test_top.env.scb [write_host_done] HOST'S DONE COMPARATIVE
+# ============================================================================================================================
+# UVM_INFO ./../tb/i2c_scoreboard.sv(93) @ 3000000: uvm_test_top.env.scb [i2c_scoreboard] PASSED! Signal is matching| Exp: busy = 0, done = 1| Act: busy = 0, done = 1
+# ============================================================================================================================
+# 
+# UVM_INFO ./../sequences/i2c_sequence.sv(20) @ 3000000: uvm_test_top.env.host_agt.seq@@seq [body] Exiting...
+# 
+# UVM_INFO ./../tb/i2c_scoreboard.sv(83) @ 3000000: uvm_test_top.env.scb [write_host_idle] HOST'S IDLE COMPARATIVE
+# ============================================================================================================================
+# UVM_INFO ./../tb/i2c_scoreboard.sv(93) @ 3000000: uvm_test_top.env.scb [i2c_scoreboard] PASSED! Signal is matching| Exp: busy = 0, done = 0| Act: busy = 0, done = 0
+# ============================================================================================================================
+# 
+# UVM_INFO ./../testcases/i2c_phase_test.sv(30) @ 13000000: uvm_test_top [run_phase] Exiting...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_objection.svh(1271) @ 13000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ./../testcases/i2c_base_test.sv(69) @ 13000000: uvm_test_top [final_phase] Entered...
+# 
+# =====================================================
+#             #### Status: TEST PASSED ####              
+# 
+# =====================================================
+# UVM_INFO ./../testcases/i2c_base_test.sv(82) @ 13000000: uvm_test_top [final_phase] Exiting...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_report_catcher.svh(705) @ 13000000: reporter [UVM/REPORT/CATCHER] 
+# --- UVM Report catcher Summary ---
+# 
+# 
+# Number of demoted UVM_FATAL reports  :    0
+# Number of demoted UVM_ERROR reports  :    0
+# Number of demoted UVM_WARNING reports:    0
+# Number of caught UVM_FATAL reports   :    0
+# Number of caught UVM_ERROR reports   :    0
+# Number of caught UVM_WARNING reports :    0
+# 
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 13000000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   52
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [NO_DPI_TSTNAME]     1
+# [RNTST]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [UVM/REPORT/CATCHER]     1
+# [UVMTOP]     1
+# [body]     3
+# [build_phase]    16
+# [connect_phase]     4
+# [end_of_elaboration_phase]     2
+# [final_phase]     2
+# [host_driver]     1
+# [i2c_monitor]     1
+# [i2c_scoreboard]     5
+# [run_phase]     5
+# [write_host_busy]     1
+# [write_host_done]     1
+# [write_host_idle]     2
+# [write_i2c_drv]     1
+# [write_i2c_mnt]     1
+# 
+# ** Note: $finish    : /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 12745 ns  Iteration: 68  Instance: /testbench
+# Saving coverage database on exit...
+# End time: 22:52:36 on Sep 29,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

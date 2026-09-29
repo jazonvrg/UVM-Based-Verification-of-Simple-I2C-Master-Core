@@ -14,7 +14,7 @@ class i2c_base_test extends uvm_test;
 	endfunction: new
 
 	virtual function void build_phase(uvm_phase phase);
-		super.build_phase;
+		super.build_phase(phase);
 		`uvm_info("build_phase", "Entered...", UVM_LOW)
 
 		/* Config */

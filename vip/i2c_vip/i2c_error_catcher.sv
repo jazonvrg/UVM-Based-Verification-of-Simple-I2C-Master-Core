@@ -18,6 +18,7 @@ class i2c_error_catcher extends uvm_report_catcher;
 				end
 			end
 		end
+		return THROW;
 	endfunction
 	
 	virtual function void add_error_catcher_msg(string str);
